@@ -10,8 +10,18 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                {{-- タスク登録ページへのリンク --}}
-                <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの登録', [], ['class' => 'nav-link']) !!}</li>
+                {{-- ログイン後のナビゲーションバー --}}
+                @if (Auth::check())
+                    {{-- タスク登録ページへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの登録', [], ['class' => 'nav-link']) !!}</li>
+                
+                {{-- ログイン前のナビゲーションバー --}}
+                @else
+                    {{-- ユーザ登録ページへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('tasks.create', '新規ユーザ登録', [], ['class' => 'nav-link']) !!}</li>
+                    {{-- ログインページへのリンク --}}
+                    <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
+                @endif
             </ul>
         </div>
     </nav>
